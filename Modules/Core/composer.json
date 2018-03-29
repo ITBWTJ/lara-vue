@@ -1,0 +1,15 @@
+{
+    "name": "johnny/core",
+    "description": "Module Core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Dev",
+            "email": "19ivan.lev97@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+
+    }
+}
