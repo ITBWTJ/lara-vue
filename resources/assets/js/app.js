@@ -10,7 +10,7 @@ window.Axios=require('axios').default;
 
 let AppLayout= require('./components/App.vue');
 
-// show the list post template
+// show the list post templates
 const Listpost=Vue.component('Listpost', require('./components/Listpost.vue'));
 
 // add post template
