@@ -13973,7 +13973,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(52);
+module.exports = __webpack_require__(56);
 
 
 /***/ }),
@@ -13990,22 +13990,22 @@ window.VueAxios = __webpack_require__(41).default;
 
 window.Axios = __webpack_require__(6).default;
 
-var AppLayout = __webpack_require__(42);
+var App = __webpack_require__(42);
 
-// show the list post template
+// show the list post templates
 var Listpost = Vue.component('Listpost', __webpack_require__(45));
 
 // add post template
 var Addpost = Vue.component('Addpost', __webpack_require__(48));
 
 // edite post template
-var Editpost = Vue.component('Editpost', __webpack_require__(49));
+var Editpost = Vue.component('Editpost', __webpack_require__(51));
 
 // delete post template
-var Deletepost = Vue.component('Deletepost', __webpack_require__(50));
+var Deletepost = Vue.component('Deletepost', __webpack_require__(52));
 
 // view single post template
-var Viewpost = Vue.component('Viewpost', __webpack_require__(51));
+var Viewpost = Vue.component('Viewpost', __webpack_require__(53));
 
 // registering Modules
 Vue.use(VueRouter, VueAxios, axios);
@@ -14034,7 +14034,7 @@ var routes = [{
 
 var router = new VueRouter({ mode: 'history', routes: routes });
 
-new Vue(Vue.util.extend({ router: router }, AppLayout)).$mount('#app');
+new Vue(Vue.util.extend({ router: router }, App)).$mount('#app');
 
 /***/ }),
 /* 15 */
@@ -50195,11 +50195,12 @@ if (false) {
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50218,18 +50219,179 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources\\assets\\js\\components\\Addpost.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-078a571a", Component.options)
+  } else {
+    hotAPI.reload("data-v-078a571a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
 /* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return { post: { title: '', body: '' } };
+  },
+
+  methods: {
+    createPost: function createPost() {
+      var _this = this;
+
+      var url = '/post';
+
+      Axios.post(url, this.post).then(function (response) {
+        _this.$router.push({ name: 'Listpost' });
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v("Add new Post")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.createPost($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.post.title,
+                expression: "post.title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "title", type: "text", required: "" },
+            domProps: { value: _vm.post.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.post, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "body" } }, [_vm._v("Body")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.post.body,
+                expression: "post.body"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "body", required: "" },
+            domProps: { value: _vm.post.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.post, "body", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("Create Post")
+        ]),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "btn btn-warning", attrs: { to: "/" } },
+          [_vm._v("Cancel")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-078a571a", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(61)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(62)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50248,11 +50410,27 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources\\assets\\js\\components\\Editpost.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-955599be", Component.options)
+  } else {
+    hotAPI.reload("data-v-955599be", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var normalizeComponent = __webpack_require__(1)
@@ -50282,14 +50460,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50308,14 +50487,257 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources\\assets\\js\\components\\Viewpost.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c4034bc", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c4034bc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return { post: { title: '', body: '' } };
+    },
+
+    created: function created() {
+        var _this = this;
+
+        var url = '/post/' + this.$route.params.id;
+
+        Axios.get(url).then(function (response) {
+            _this.post = response.data.data;
+        });
+    }
+
+});
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h3", [_vm._v(_vm._s(_vm.post.title))]),
+      _vm._v(" "),
+      _c("div", [_vm._v("\n        " + _vm._s(_vm.post.body) + "\n    ")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "glyphicon glyphicon-arrow-left" }),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "Listpost" } } }, [
+        _vm._v("Back to list")
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c4034bc", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return { post: { id: '', title: '', body: '' } };
+  },
+
+  created: function created() {
+    var _this = this;
+
+    var url = '/post/' + this.$route.params.id;
+
+    Axios.get(url).then(function (response) {
+      _this.post = response.data.data;
+    });
+  },
+  methods: {
+    updatePost: function updatePost() {
+      var _this2 = this;
+
+      var url = '/post/' + this.post.id;
+
+      Axios.put(url, this.post).then(function (response) {
+        _this2.$router.push({ name: 'Listpost' });
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v("Update Post #" + _vm._s(_vm.post.id))]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updatePost($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "title" } }, [_vm._v("Title")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.post.title,
+                expression: "post.title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "title", type: "text", required: "" },
+            domProps: { value: _vm.post.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.post, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "body" } }, [_vm._v("Body")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.post.body,
+                expression: "post.body"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "body", required: "" },
+            domProps: { value: _vm.post.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.post, "body", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("Create Post")
+        ]),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "btn btn-warning", attrs: { to: "/" } },
+          [_vm._v("Cancel")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-955599be", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -35,6 +35,7 @@ class Parser
             $promise = $this->client->get($url)->then(
                 function (\Psr\Http\Message\ResponseInterface $response) {
                     $this->parsed[] = $this->extractFromHtml((string) $response->getBody());
+
                 });
 
             $this->loop->addTimer($timeout, function() use ($promise) {

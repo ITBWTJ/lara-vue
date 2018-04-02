@@ -40,7 +40,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create($request->only(['title', 'body']));
+
+        return response()->json(['message' => 'OK', 'post' => $post], 200);
     }
 
     /**
@@ -51,7 +53,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::where('id', $id)->first();
+
+        return response()->json(['message' => 'OK', 'data' => $post], 200);
     }
 
     /**
@@ -74,7 +78,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Post::where('id', $id)->update($request->all());
+
+        return response()->json(['message' => 'OK'], 200);
     }
 
     /**

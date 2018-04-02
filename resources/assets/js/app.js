@@ -8,7 +8,7 @@ window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
 
-let AppLayout= require('./components/App.vue');
+let App = require('./components/App.vue');
 
 // show the list post templates
 const Listpost=Vue.component('Listpost', require('./components/Listpost.vue'));
@@ -61,6 +61,6 @@ const router = new VueRouter({ mode: 'history', routes: routes});
 new Vue(
   Vue.util.extend(
     { router },
-    AppLayout
+    App
   )
 ).$mount('#app');
