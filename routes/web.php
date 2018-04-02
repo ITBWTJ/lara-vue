@@ -22,4 +22,6 @@ Route::get('/', 'PostController@home')->name('home');
 
 Route::resource('/post', 'PostController');
 
-ROute::get('/parse', 'ParserController@parse');
+Route::get('/parse', 'ParserController@parse');
+
+Route::get('/test-foreach', 'PostController@test');
